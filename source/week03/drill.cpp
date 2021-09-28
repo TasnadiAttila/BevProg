@@ -19,6 +19,7 @@ double atvalto(double bevitt_szam, string unit){
             return bevitt_szam*1;
         }
     }
+    return 0;
 }
 
 
