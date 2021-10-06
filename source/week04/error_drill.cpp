@@ -2,7 +2,7 @@
 int main()
     try {
   
-        Cout << "Success!\n";
+        cout << "Success!\n";
 
 
 
