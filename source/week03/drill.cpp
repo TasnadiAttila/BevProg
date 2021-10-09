@@ -118,8 +118,8 @@ int main()
     //hatodik feladat
 
     double bekert_szam = 0; //valtozo a bekert szamnak
-    double legnagyobb_eddig = 0;  //valtozo a legnagyobb szamnak
-    double legkisebb_eddig = 0;   //valtozo a legkisebb szamnak
+    double legnagyobb_eddig = -10000;  //valtozo a legnagyobb szamnak
+    double legkisebb_eddig = 10000;   //valtozo a legkisebb szamnak
     string unit = " "; //üres unit
     double sum_of_values = 0;
     double number_of_values = 0;
