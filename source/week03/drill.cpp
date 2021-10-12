@@ -28,7 +28,7 @@ int main()
 { 
     //az összes feladat 1 nagy kommentben van
     /*
-    //első feladat
+    //első feladat //
     
     int egyik_szam = 0;
     int masik_szam = 0;
