@@ -19,7 +19,7 @@ Revised April 25, 2010: simple_error() added
 Revised November 25 2013: remove support for pre-C++11 compilers, use C++11: <chrono>
 Revised November 28 2013: add a few container algorithms
 Revised June 8 2014: added #ifndef to workaround Microsoft C++11 weakness
-Revised Febrary 2 2015: randint() can now be seeded (see exercise 5.13).
+Revised Febrary 2 2015: randint() can now be seeded (see exercise 5.13)..
 Revised August 3, 2020: a cleanup removing support for ancient compilers
 */
 
