@@ -183,6 +183,9 @@ double expression()
 int main()
 try
 {
+    cout << "Welcome to our simple calculator. Please enter expressions using floating-point numbers." << endl;
+    cout << "To print use '=' character to exit user 'x' charachter" << endl;
+    cout << "Available operators are +, -, *, /, (, )." << endl;
     double val = 0;
     while (cin) {
         Token t = ts.get();
