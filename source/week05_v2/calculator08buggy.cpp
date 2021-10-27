@@ -15,7 +15,7 @@ struct Token {
 	string name;
 	Token(char ch) :kind(ch), value(0) { }
 	Token(char ch, double val) :kind(ch), value(val) { }
-	Token(char ch, string s): kind(ch), name(s) {}
+	Token(char ch, string s): kind(ch), name(s) {} 
 };
 
 class Token_stream {
@@ -38,7 +38,11 @@ const char name = 'a';
 
 Token Token_stream::get()
 {
-	if (full) { full = false; return buffer; }
+	if (full) 
+	{ 
+		full = false; 
+		return buffer; 
+	}
 	char ch;
 	cin >> ch;
 	switch (ch) {
@@ -63,7 +67,8 @@ Token Token_stream::get()
 	case '7':
 	case '8':
 	case '9':
-	{	cin.unget();
+	{	
+	cin.putback(ch);
 	double val;
 	cin >> val;
 	return Token(number, val);
@@ -73,9 +78,9 @@ Token Token_stream::get()
 			string s;
 			s += ch;
 			while (cin.get(ch) && (isalpha(ch) || isdigit(ch))) s = ch;
-			cin.unget();
+			cin.putback(ch);
 			if (s == "let") return Token(let);
-			if (s == "quit") return Token(name);
+			if (s == "quit") return Token(quit);
 			return Token(name, s);
 		}
 		error("Bad token");
@@ -139,10 +144,11 @@ double primary()
 	Token t = ts.get();
 	switch (t.kind) {
 	case '(':
-	{	double d = expression();
-	t = ts.get();
-	if (t.kind != ')') error("'(' expected");
-	 return d;
+	{	
+		double d = expression();
+		t = ts.get();
+		if (t.kind != ')') error("'(' expected");
+			return d;
 	}
 	case '-':
 		return -primary();
@@ -200,7 +206,7 @@ double expression()
 double declaration()
 {
 	Token t = ts.get();
-	if (t.kind != 'a') error("name expected in declaration");
+	if (t.kind != name) error("name expected in declaration");
 	string name = t.name;
 	if (is_declared(name)) error(name, " declared twice");
 	Token t2 = ts.get();
