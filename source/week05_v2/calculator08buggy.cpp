@@ -238,6 +238,8 @@ const string result = "= ";
 
 void calculate()
 {
+    names.push_back(Variable("k", 1000));
+
 	while (true) try {
 		cout << prompt;
 		Token t = ts.get();
