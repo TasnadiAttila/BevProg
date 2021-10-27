@@ -15,6 +15,7 @@ struct Token {
 	string name;
 	Token(char ch) :kind(ch), value(0) { }
 	Token(char ch, double val) :kind(ch), value(val) { }
+	Token(char ch, string s): kind(ch), name(s) {}
 };
 
 class Token_stream {
@@ -78,7 +79,9 @@ Token Token_stream::get()
 			return Token(name, s);
 		}
 		error("Bad token");
+		
 	}
+	return 0;
 }
 
 void Token_stream::ignore(char c)
