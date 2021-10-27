@@ -142,6 +142,7 @@ double primary()
 	{	double d = expression();
 	t = ts.get();
 	if (t.kind != ')') error("'(' expected");
+	 return d;
 	}
 	case '-':
 		return -primary();
