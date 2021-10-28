@@ -35,6 +35,8 @@ const char quit = 'Q';
 const char print = ';';
 const char number = '8';
 const char name = 'a';
+const char sqrtT = '@';
+const char powT = '&';
 
 Token Token_stream::get()
 {
@@ -54,6 +56,7 @@ Token Token_stream::get()
 	case '/':
 	case '%':
 	case ';':
+	case ',':
 	case '=':
 		return Token(ch);
 	case '.':
@@ -68,19 +71,27 @@ Token Token_stream::get()
 	case '8':
 	case '9':
 	{	
-	cin.putback(ch);
+	cin.unget();
 	double val;
 	cin >> val;
 	return Token(number, val);
+	}
+	case 'k': {
+		cin.unget();
+		char val;
+		cin >> val;
+		return Token(number,1000);
 	}
 	default:
 		if (isalpha(ch)) {
 			string s;
 			s += ch;
-			while (cin.get(ch) && (isalpha(ch) || isdigit(ch))) s = ch;
-			cin.putback(ch);
-			if (s == "L") return Token(let);
-			if (s == "Q") return Token(quit);
+			while (cin.get(ch) && (isalpha(ch) || isdigit(ch))) s += ch;
+			cin.unget();
+			if (s == "let") return Token(let);
+			if (s == "quit") return Token(quit);
+			if (s == "sqrt") return Token(sqrtT);
+			if (s == "pow") return Token(powT);
 			return Token(name, s);
 		}
 		error("Bad token");
@@ -139,6 +150,8 @@ Token_stream ts;
 
 double expression();
 
+
+
 double primary()
 {
 	Token t = ts.get();
@@ -156,6 +169,21 @@ double primary()
 		return t.value;
 	case name:
 		return get_value(t.name);
+	case powT: {
+			t=ts.get();
+	        double d=expression();
+	        t=ts.get();
+	        double i=expression();
+	        t=ts.get();
+	        return pow(d,i);
+		}
+	case sqrtT:
+        {
+            double d = primary();
+            if (d < 0) error("Can't sqrt()");
+            return sqrt(d);
+        }
+	
 	default:
 		error("primary expected");
 	}
