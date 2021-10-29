@@ -1,9 +1,6 @@
-
 /*
 	calculator08buggy.cpp
-
 	Helpful comments removed.
-
 	We have inserted 3 bugs that the compiler will catch and 3 that it won't.
 */
 
@@ -58,6 +55,7 @@ Token Token_stream::get()
 	case ';':
 	case ',':
 	case '=':
+	case '#':
 		return Token(ch);
 	case '.':
 	case '0':
@@ -88,8 +86,8 @@ Token Token_stream::get()
 			s += ch;
 			while (cin.get(ch) && (isalpha(ch) || isdigit(ch))) s += ch;
 			cin.unget();
-			if (s == "let") return Token(let);
-			if (s == "quit") return Token(quit);
+			if (s == "#") return Token(let);
+			if (s == "exit") return Token(quit);
 			if (s == "sqrt") return Token(sqrtT);
 			if (s == "pow") return Token(powT);
 			return Token(name, s);
@@ -248,7 +246,7 @@ double statement()
 {
 	Token t = ts.get();
 	switch (t.kind) {
-	case let:
+	case '#':
 		return declaration();
 	default:
 		ts.unget(t);
