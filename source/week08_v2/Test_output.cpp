@@ -13,11 +13,11 @@ int main(){
     int a, b, c, d;
 	cout << "Please enter  4 numbers!" << endl;
     //not working for some reason
-	/*cin >> a >> oct >> b >> hex >> c >> d;
+	cin >> a >> oct >> b >> hex >> c >> d;
 	cout << "\nThe first number in decimal: " << a << endl;
 	cout << "The second number in octal: " << b << endl;
 	cout << "The third and fourth number in hexadecimal: " << c << ", " << d<< endl;
-    */
+    
    /*int asd = 1234;
     cout << hex << asd << endl;
     */
